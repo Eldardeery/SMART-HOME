@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * common.h
  *
@@ -7,6 +8,17 @@
 
 #ifndef COMMON_H_
 #define COMMON_H_
+=======
+/*
+ * common.h
+ *
+ *  Created on: Jul 14, 2018
+ *      Author: dardeery
+ */
+
+#ifndef COMMON_H_
+#define COMMON_H_
+>>>>>>> 50770696eabc6891b153c0666b8d9d5b1191c063
 /* Set a certain bit in any register */
 #define SET_BIT(REG,BIT) (REG|=(1<<BIT))
 
@@ -27,6 +39,7 @@
 
 /* Check if a specific bit is cleared in any register and return true if yes */
 #define BIT_IS_CLEAR(REG,BIT) ( !(REG & (1<<BIT)) )
+<<<<<<< HEAD
 
 #define NULL (void *) 0
 
@@ -55,3 +68,33 @@ typedef enum
 }DIRECTION;
 
 #endif /* COMMON_H_ */
+=======
+
+#define NULL (void *) 0
+
+
+typedef unsigned char                       uint8;
+typedef signed char                         sint8;
+typedef unsigned short                     uint16;
+typedef signed short                       sint16;
+typedef unsigned int                       uint32;
+typedef signed int                         sint32;
+typedef unsigned long                      uint64;
+typedef signed long                        sint64;
+
+
+
+typedef  enum
+{
+	E_FALSE =0,
+	E_TRUE ,
+}bool_t;
+
+typedef enum
+{
+	IN=0,
+	OUT,
+}DIRECTION;
+
+#endif /* COMMON_H_ */
+>>>>>>> 50770696eabc6891b153c0666b8d9d5b1191c063
