@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /*
  * led.c
  *
@@ -6,46 +5,20 @@
  *      Author: dardeery
  */
 
-#include "led.h"
+#include"led.h"
 
-void Init_Led(PORT_BASE PORT,uint8 PIN_NUM)
+void Init_Led(LED_CONFIG *object)
 {
-	SET_PIN_DIRECTION(PORT, PIN_NUM, OUT);
+	SET_PIN_DIRECTION(object->port, object->led_num, OUT);
 }
-void Led_On (PORT_BASE PORT,uint8 PIN_NUM)
+void Led_On (LED_CONFIG* object)
 {
-	Set_bit(PORT,PIN_NUM);
-
-}
-
-void Led_Off(PORT_BASE PORT,uint8 PIN_NUM)
-{
-	Clear_bit(PORT,PIN_NUM);
-
-}
-=======
-/*
- * led.c
- *
- *  Created on: Sep 4, 2021
- *      Author: dardeery
- */
-
-#include "led.h"
-
-void Init_Led(PORT_BASE PORT,uint8 PIN_NUM)
-{
-	SET_PIN_DIRECTION(PORT, PIN_NUM, OUT);
-}
-void Led_On (PORT_BASE PORT,uint8 PIN_NUM)
-{
-	Set_bit(PORT,PIN_NUM);
+	WRITE_PIN_HIGH(object->port, object->led_num);
 
 }
 
-void Led_Off(PORT_BASE PORT,uint8 PIN_NUM)
+void Led_Off(LED_CONFIG* object)
 {
-	Clear_bit(PORT,PIN_NUM);
+	WRITE_PIN_LOW(object->port, object->led_num);
 
 }
->>>>>>> 50770696eabc6891b153c0666b8d9d5b1191c063

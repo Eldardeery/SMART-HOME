@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /*
  * led.h
  *
@@ -12,32 +11,34 @@
 #include"gpio.h"
 
 
+/*EX
+LED_CONFIG room11 ={PORTA_T,6};
+int main(void)
+{
+	Init_Led(&room11);
 
-void Init_Led(PORT_BASE PORT,uint8 PIN_NUM);
-void Led_On (PORT_BASE PORT,uint8 PIN_NUM);
-void Led_Off(PORT_BASE PORT,uint8 PIN_NUM);
+	while (1)
+	{
+		Led_On(&room11);
+		_delay_ms(1000);
+		Led_Off(&room11);
+		_delay_ms(1000);
+
+	}
+}
+*/
+
+typedef struct
+{
+	PORT_BASE port;
+	uint8 led_num;
+}LED_CONFIG;
+
+
+
+void Init_Led(LED_CONFIG *object);
+void Led_On (LED_CONFIG *object);
+void Led_Off(LED_CONFIG *object);
 
 
 #endif /* LED_H_ */
-=======
-/*
- * led.h
- *
- *  Created on: Sep 4, 2021
- *      Author: dardeery
- */
-
-#ifndef LED_H_
-#define LED_H_
-
-#include"gpio.h"
-
-
-
-void Init_Led(PORT_BASE PORT,uint8 PIN_NUM);
-void Led_On (PORT_BASE PORT,uint8 PIN_NUM);
-void Led_Off(PORT_BASE PORT,uint8 PIN_NUM);
-
-
-#endif /* LED_H_ */
->>>>>>> 50770696eabc6891b153c0666b8d9d5b1191c063
