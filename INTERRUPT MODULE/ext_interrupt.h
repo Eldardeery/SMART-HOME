@@ -32,8 +32,8 @@ typedef struct
 	enum_Int_num   interrupt_num;
 	enum_Int_sense interrupt_sense;
 	}str_int_cnfig;
-void callback(void (* my_func)(void));
-void Init_ext_interrupt(str_int_cnfig * Iner_cnfig, void (*call_isr)(void));
+
+void Init_ext_interrupt(str_int_cnfig * Iner_cnfig);
 void ext_interrupt_triger(str_int_cnfig *interrupt_active, void (*call_isr)(void));
 void Enable_g_interrupt();
 void Disable_g_interrupt();
