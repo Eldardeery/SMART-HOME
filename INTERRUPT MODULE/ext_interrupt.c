@@ -6,10 +6,11 @@
  */ 
 #include "ext_interrupt.h"
 #include <avr/interrupt.h>
+
 static void (* my_func[3])();
 
 
-void Init_ext_interrupt(str_int_cnfig * Iner_cnfig, void (*call_isr)(void))
+void Init_ext_interrupt(str_int_cnfig * Iner_cnfig)
 {
 	
 	switch (Iner_cnfig->interrupt_num)
@@ -30,7 +31,7 @@ void Init_ext_interrupt(str_int_cnfig * Iner_cnfig, void (*call_isr)(void))
 			{
 				MCUCR |=(1<<ISC00);
 			}
-			my_func[0] = call_isr;
+			/*my_func[0] = call_isr;*/
 			break;
 		}
 		case My_int_1 :
@@ -49,7 +50,7 @@ void Init_ext_interrupt(str_int_cnfig * Iner_cnfig, void (*call_isr)(void))
 			{
 				MCUCR |=(1<<ISC10);
 			}	
-			my_func[1] = call_isr;
+			/*my_func[1] = call_isr;*/
 			break;	
 		}
 		case My_int_2 :
@@ -64,13 +65,31 @@ void Init_ext_interrupt(str_int_cnfig * Iner_cnfig, void (*call_isr)(void))
 			{
 				MCUCSR |=(1<<ISC2);	
 			}	
-			my_func[2] = call_isr;
+			/*my_func[2] = call_isr;*/
 			break;
 		}				
 		
 	}
 }
 
+
+
+void ext_interrupt_triger(str_int_cnfig *interrupt_active, void (*call_isr)(void))
+{
+	switch (interrupt_active->interrupt_num)
+	{
+		case My_int_0:
+		my_func[0] = call_isr;
+		break;
+		case My_int_1:
+		my_func[1] = call_isr;
+		break;
+		case My_int_2:
+		my_func[2] = call_isr;
+		break;
+	}
+	
+}
 
 void Enable_g_interrupt()
 {
@@ -80,17 +99,20 @@ void Disable_g_interrupt()
 {
 	cli();
 }
-/*
+
 ISR(INT0_vect)
 {
 	my_func[0]();
+	GIFR |=(1<<INTF0);
 }
-*/
+
 ISR(INT1_vect)
 {
 	my_func[1]();
+	GIFR |=(1<<INTF1);
 }
 ISR(INT2_vect)
 {
 	my_func[2]();
+	GIFR |=(1<<INTF2);
 }
